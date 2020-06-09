@@ -1,0 +1,50 @@
+{
+  "name": "basic-kit-js",
+  "version": "0.0.2",
+  "description": "js-basic-kit",
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "start-storybook -p 6006",
+    "build": "tsc",
+    "test": "jest",
+    "format": "npm run format:tslint",
+    "format:tslint": "tslint --fix --config ./tslint.json 'src/**/*.{ts,tsx}'",
+    "format:prettier": "prettier --config .prettierrc --write 'src/**/*.{js,jsx,ts,tsx,scss}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lynnkoo/js-basic-kit.git"
+  },
+  "keywords": [
+    "js-basic-kit"
+  ],
+  "author": "lynnkoo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lynnkoo/js-basic-kit/issues"
+  },
+  "homepage": "https://github.com/lynnkoo/js-basic-kit#readme",
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "husky": "^3.0.7",
+    "jest": "^26.0.1",
+    "lint-staged": "^9.4.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^26.1.0",
+    "tslint": "^5.11.0",
+    "typescript": "^3.2.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,md,css,scss,html}": [
+      "npm run format",
+      "git add"
+    ]
+  },
+  "gitHead": "20090c232fd0c9e032a185c14eaef7d224742bb2"
+}

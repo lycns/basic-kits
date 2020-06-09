@@ -1,0 +1,19 @@
+@mixin scroll-container {
+    &, * {
+       @include l-flex(column, x);
+       flex-shrink: 0;
+    }
+}
+// 兼容考虑，需要先设置高度
+@mixin scroll-content($length) {
+    flex-shrink: 1;
+    flex-grow: 1;
+    overflow: scroll;
+    height: $length;
+    &::-webkit-scrollbar {
+        @content;
+    }
+    * {
+        display: block;
+    }
+}
