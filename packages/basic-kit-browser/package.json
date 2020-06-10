@@ -1,6 +1,6 @@
 {
   "name": "basic-kit-browser",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simplify work flow for redux",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -44,6 +44,5 @@
   },
   "dependencies": {
     "basic-kit-js": "^0.0.3"
-  },
-  "gitHead": "20090c232fd0c9e032a185c14eaef7d224742bb2"
+  }
 }

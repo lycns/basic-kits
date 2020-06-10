@@ -7,6 +7,8 @@
   "scripts": {
     "start": "start-storybook -p 6006",
     "build": "tsc",
+    "watch": "tsc -w",
+    "build:force": "rm -rf .tsbuildcache && npm run build",
     "test": "jest",
     "format": "npm run format:tslint",
     "format:tslint": "tslint --fix --config ./tslint.json 'src/**/*.{ts,tsx}'",
@@ -45,6 +47,5 @@
       "npm run format",
       "git add"
     ]
-  },
-  "gitHead": "20090c232fd0c9e032a185c14eaef7d224742bb2"
+  }
 }

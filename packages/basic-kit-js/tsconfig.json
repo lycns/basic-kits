@@ -1,24 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "lib",
-    "target": "es6",
-    "jsx": "react",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "declaration": true,
+    "tsBuildInfoFile": ".tsbuildcache",
     "rootDir": "src",
-    "strict": true,
-    "noImplicitAny": true,
-    "pretty": true,
-    "sourceMap": false,
-    "esModuleInterop": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "lib": ["es2020", "dom"],
-    "importHelpers": true
+    "outDir": "lib"
   },
+  "extends": "../../tsconfig",
   "exclude": ["node_modules", "lib"],
   "include": ["src"]
 }

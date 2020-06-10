@@ -1,9 +1,7 @@
 {
   "name": "basic-kits",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": [ "packages/*" ],
   "scripts": {
     "init": "yarn install && lerna bootstrap && lerna run build",
     "build:prod": "lerna run build && lerna publish",
