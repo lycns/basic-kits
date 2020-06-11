@@ -3,8 +3,9 @@
   "private": true,
   "workspaces": [ "packages/*" ],
   "scripts": {
-    "init": "yarn install && lerna bootstrap && lerna run build",
-    "build:prod": "lerna run build && lerna publish",
+    "init": "yarn install && lerna bootstrap && npm run build",
+    "build": "lerna run --stream --sort build:force",
+    "build:prod": "npm run build && lerna publish",
     "clean": "lerna clean -y && rm -rf node_modules",
     "clean:init": "npm run clean && npm run init"
   },

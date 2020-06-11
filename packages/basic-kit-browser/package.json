@@ -7,6 +7,7 @@
   "scripts": {
     "start": "start-storybook -p 6006",
     "build": "tsc",
+    "build:force": "rm -rf .tsbuildcache && npm run build",
     "format": "npm run format:tslint",
     "format:tslint": "tslint --fix --config ./tslint.json 'src/**/*.{ts,tsx}'",
     "format:prettier": "prettier --config .prettierrc --write 'src/**/*.{js,jsx,ts,tsx,scss}'"
