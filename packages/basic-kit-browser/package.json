@@ -5,12 +5,7 @@
   "main": "lib/index.js",
   "sideEffects": false,
   "scripts": {
-    "start": "start-storybook -p 6006",
-    "build": "tsc",
-    "build:force": "rm -rf .tsbuildcache && npm run build",
-    "format": "npm run format:tslint",
-    "format:tslint": "tslint --fix --config ./tslint.json 'src/**/*.{ts,tsx}'",
-    "format:prettier": "prettier --config .prettierrc --write 'src/**/*.{js,jsx,ts,tsx,scss}'"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -26,22 +21,7 @@
   },
   "homepage": "https://github.com/lynnkoo/browser-basic-kit#readme",
   "devDependencies": {
-    "husky": "^3.0.7",
-    "lint-staged": "^9.4.0",
-    "prettier": "^1.18.2",
-    "tslint": "^5.11.0",
     "typescript": "^3.2.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,md,css,scss,html}": [
-      "npm run format",
-      "git add"
-    ]
   },
   "dependencies": {
     "basic-kit-js": "^0.0.3"
