@@ -25,3 +25,13 @@ export function initWindowWidth() {
         initWidth()
     })
 }
+
+// 是否存在垂直滚动条
+export function hasVerticalScrollbar() {
+    return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
+}
+
+// 是否存在水平滚动条
+export function hasHorizontalScrollbar() {
+    return document.body.scrollWidth > (window.innerWidth || document.documentElement.clientWidth);
+}
