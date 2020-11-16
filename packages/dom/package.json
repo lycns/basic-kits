@@ -1,6 +1,6 @@
 {
   "name": "@baskit/dom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simplify work flow for redux",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -24,6 +24,6 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "@baskit/ua": "^0.0.1"
+    "@baskit/ua": "^0.0.2"
   }
 }

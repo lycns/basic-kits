@@ -1,6 +1,6 @@
 {
   "name": "@baskit/ua",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simplify work flow for redux",
   "main": "lib/index.js",
   "sideEffects": false,
