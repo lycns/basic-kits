@@ -1,0 +1,29 @@
+{
+  "name": "@baskit/dom",
+  "version": "0.0.1",
+  "description": "A simplify work flow for redux",
+  "main": "lib/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lynnkoo/browser-basic-kit.git"
+  },
+  "keywords": [
+    "browser-basic-kit"
+  ],
+  "author": "lynnkoo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lynnkoo/browser-basic-kit/issues"
+  },
+  "homepage": "https://github.com/lynnkoo/browser-basic-kit#readme",
+  "devDependencies": {
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "@baskit/ua": "^0.0.1"
+  }
+}

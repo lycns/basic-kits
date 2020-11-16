@@ -1,6 +1,6 @@
 {
-  "name": "basic-kit-scss",
-  "version": "0.0.2",
+  "name": "@baskit/scss",
+  "version": "0.0.1",
   "description": "scss-basic-kit",
   "scripts": {
     "start": "start-storybook -p 6006",

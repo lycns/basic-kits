@@ -1,6 +1,6 @@
 {
-  "name": "basic-kit-browser",
-  "version": "0.0.3",
+  "name": "@baskit/ua",
+  "version": "0.0.1",
   "description": "A simplify work flow for redux",
   "main": "lib/index.js",
   "sideEffects": false,

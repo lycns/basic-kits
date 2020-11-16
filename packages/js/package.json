@@ -1,6 +1,6 @@
 {
-  "name": "basic-kit-js",
-  "version": "0.0.3",
+  "name": "@baskit/js",
+  "version": "0.0.1",
   "description": "js-basic-kit",
   "sideEffects": false,
   "main": "lib/index.js",
@@ -8,6 +8,7 @@
     "start": "start-storybook -p 6006",
     "build": "tsc",
     "watch": "tsc -w",
+    "test": "jest",
     "build:force": "rimraf .tsbuildcache && npm run build"
   },
   "repository": {

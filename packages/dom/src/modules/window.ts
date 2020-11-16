@@ -1,11 +1,11 @@
-import { IS_WINDOWS, IS_MOBILE } from './device'
+import { DeviceTypes } from './alias'
 
 export function initInnerHeight(rootNode: HTMLElement | null) {
     if (!rootNode) {
         return false
     }
     // windows 如果不减去两个像素就会出现滚动条
-    const heightOffset = IS_WINDOWS ? -2 : 0
+    const heightOffset = DeviceTypes.isWindows ? -2 : 0
     const innerHeight = window.innerHeight
     rootNode.style.minHeight = innerHeight ? innerHeight + heightOffset  + 'px' : '100vh'
     return true
@@ -13,7 +13,7 @@ export function initInnerHeight(rootNode: HTMLElement | null) {
 
 // 初始化窗口宽度, web 端非响应式兼容时使用，保证窗口自动缩放
 export function initWindowWidth() {
-    if (!IS_MOBILE) {
+    if (!DeviceTypes.isMobile) {
         return
     }
     const initWidth = () => {
@@ -26,12 +26,12 @@ export function initWindowWidth() {
     })
 }
 
-// 是否存在垂直滚动条
-export function hasVerticalScrollbar() {
-    return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight);
-}
-
-// 是否存在水平滚动条
-export function hasHorizontalScrollbar() {
-    return document.body.scrollWidth > (window.innerWidth || document.documentElement.clientWidth);
+type ScrollDirection = 'vertical' | 'horizontal' | 'v' | 'h'
+// 是否存在滚动条
+export function hasScrollbar(direction: ScrollDirection) {
+    if (['h', 'horizontal'].includes(direction)) {
+        return document.body.scrollWidth > (window.innerWidth || document.documentElement.clientWidth)
+    } else {
+        return document.body.scrollWidth > (window.innerWidth || document.documentElement.clientWidth);
+    }
 }

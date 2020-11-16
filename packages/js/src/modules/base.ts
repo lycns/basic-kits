@@ -1,10 +1,10 @@
-// 转换成一个元素类型一致且没有空元素的数组
-export function xArray<T>(value?: T | T[]): T[] {
+// 数组归一化, 转换成一个元素类型一致且没有空元素的数组
+export function xArray<T>(value?: T | T[], opts: IEmptyOpts = {} ): T[] {
     const empty = [] as T[]
     if (!value) {
       return empty
     }
-    return empty.concat(value).filter(Boolean)
+    return empty.concat(value).filter(v => !xEmpty(v, opts))
   }
 
   // 处理 date 类型的兼容
@@ -15,15 +15,19 @@ export function xDate(value: Date | string | number): Date {
 
   // 可以获得更多的 typeOf 类型
 export function xType(value: any): string {
-      return Object.prototype.toString.call(value).slice(8, -1).toLocaleLowerCase()
-  }
+    return Object.prototype.toString.call(value).slice(8, -1).toLocaleLowerCase()
+}
+
+export function xIsType<T>(value: any, mtype: string): value is T {
+  return xType(value) === mtype
+}
 
 const EMPTIES = [null, undefined, NaN, '']
 
 type IEmptyOpts = {
     extras?: any[],
     strict?: boolean,
-  }
+}
 
 export function xEmpty(value: any, opts: IEmptyOpts = {} ) {
     const { extras = [], strict = true } = opts
@@ -36,7 +40,8 @@ export function xEmpty(value: any, opts: IEmptyOpts = {} ) {
     } else {
       return filters.includes(value)
     }
-  }
+}
+
 
 export function xObject<T>(obj: T, opts: IEmptyOpts = {} ): Partial<T> {
     const newObj = {} as Partial<T>
