@@ -38,6 +38,9 @@
       "pre-commit": "lint-staged"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "lint-staged": {
     "*.{ts,tsx,md,css,scss,html}": [
       "npm run format",
