@@ -1,6 +1,6 @@
 {
   "name": "@basic-kits/dom",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A simplify work flow for redux",
   "main": "lib/index.js",
   "sideEffects": false,
@@ -24,7 +24,7 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "@basic-kits/ua": "^0.0.3"
+    "@basic-kits/ua": "^0.0.4"
   },
   "publishConfig": {
     "access": "public"
