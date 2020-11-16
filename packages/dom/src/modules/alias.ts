@@ -3,7 +3,7 @@ import {
     BrowserType, 
     getBrowserVersion, 
     getDeviceTypes,
-} from '@baskit/ua'
+} from '@basic-kits/ua'
 
 const ua = navigator.userAgent
 export const BROWSER_TYPE = getBrowserType(ua)

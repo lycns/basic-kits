@@ -1,5 +1,5 @@
 {
-  "name": "@baskit/scss",
+  "name": "@basic-kits/scss",
   "version": "0.0.2",
   "description": "scss-basic-kit",
   "scripts": {
@@ -19,5 +19,8 @@
     "url": "https://github.com/lynnkoo/scss-basic-kit/issues"
   },
   "homepage": "https://github.com/lynnkoo/scss-basic-kit#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "gitHead": "f12b8bd6d88f9f211723965110f37be5cb72617d"
 }

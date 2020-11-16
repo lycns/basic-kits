@@ -1,4 +1,4 @@
-import { xArray, xIsType } from '@baskit/js'
+import { xArray, xIsType } from '@basic-kits/js'
 
 export enum BrowserType {
     IE = 'IE',

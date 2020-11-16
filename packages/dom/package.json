@@ -1,5 +1,5 @@
 {
-  "name": "@baskit/dom",
+  "name": "@basic-kits/dom",
   "version": "0.0.2",
   "description": "A simplify work flow for redux",
   "main": "lib/index.js",
@@ -24,7 +24,10 @@
     "typescript": "^3.2.2"
   },
   "dependencies": {
-    "@baskit/ua": "^0.0.2"
+    "@basic-kits/ua": "^0.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "gitHead": "f12b8bd6d88f9f211723965110f37be5cb72617d"
 }
