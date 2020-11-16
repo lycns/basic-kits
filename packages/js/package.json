@@ -43,5 +43,6 @@
       "npm run format",
       "git add"
     ]
-  }
+  },
+  "gitHead": "f12b8bd6d88f9f211723965110f37be5cb72617d"
 }
