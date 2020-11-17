@@ -1,8 +1,10 @@
 @import './variable/color.scss';
 @import './variable/screen.scss';
-@import './mixin/helper.scss';
-@import './mixin/classify.scss';
+@import './mixin/base.scss';
+@import './mixin/group.scss';
+@import './mixin/device.scss';
 @import './mixin/layout.scss';
+
 @import './object/btn.scss';
 @import './object/text.scss';
 @import './object/img.scss';

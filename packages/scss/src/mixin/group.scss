@@ -1,0 +1,26 @@
+@mixin set-size($size) {
+  $width: nth($size, 1);
+  $height: $width;
+  @if length($size) == 2 {
+      $height: nth($size, 2);
+  } 
+  @include set(width, $width);
+  @include set(height, $height);
+}
+
+@mixin set-color($text-color, $border-color: x, $bg-color: $border-color) {
+  @include set(color, $text-color);
+  @include set(border-color, $border-color);
+  @include set(background-color, $bg-color);
+}
+
+@mixin set-border($width, $radius, $color: x) {
+  @include set(border-width, $width);
+  @include set(border-radius, $radius);
+}
+
+@mixin set-font($font-size, $font-weight: x, $line-height: x) {
+  @include set(font-size, $font-size);
+  @include set(font-weight, $font-weight);
+  @include set(line-height, $line-height);
+}

@@ -1,31 +1,30 @@
-@mixin l-position($position, $values) {
+@mixin flex($direction, $v-align, $h-align: $v-align) {
+  display: flex;
+  flex-wrap: wrap;
+  @include set(flex-direction, $direction);
+  @if $direction == row {
+    @include set(justify-content, $h-align);
+    @include set(align-items, $v-align);
+  }
+  @if $direction == column {
+    @include set(align-items, $h-align);
+    @include set(justify-content, $v-align);
+  }
+}
+
+@mixin position($position, $values) {
   $top: nth($values, 1);
   $right: nth($values, 2);
   $bottom: nth($values, 3);
   $left: nth($values, 4);
-  @include h-property(position, $position);
-  @include h-property(top, $top);
-  @include h-property(right, $right);
-  @include h-property(bottom, $bottom);
-  @include h-property(left, $left);
+  @include set(position, $position);
+  @include set(top, $top);
+  @include set(right, $right);
+  @include set(bottom, $bottom);
+  @include set(left, $left);
 }
 
-@mixin l-flex($direction, $v-align, $h-align: $v-align) {
-  display: flex;
-  flex-wrap: wrap;
-  @include h-property(flex-direction, $direction);
-  @if $direction == row {
-    @include h-property(justify-content, $h-align);
-    @include h-property(align-items, $v-align);
-  }
-  @if $direction == column {
-    @include h-property(align-items, $h-align);
-    @include h-property(justify-content, $v-align);
-  }
-  @content;
-}
-
-@mixin l-absolute($v-align, $h-align: $v-align) {
+@mixin absolute($v-align, $h-align: $v-align) {
   position: absolute;
   white-space: nowrap;
   @if $v-align == start {
@@ -53,12 +52,5 @@
     top: 50%;
     transform: translate(-50%, -50%);
   }
-  @content;
 }
 
-@mixin l-container() {
-  @include h-width($container-width);
-  @include h-property(min-width, $container-min-width);
-  margin-left: auto;
-  margin-right: auto;
-}

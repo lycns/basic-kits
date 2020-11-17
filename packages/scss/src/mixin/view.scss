@@ -1,0 +1,54 @@
+%bg-image-base {
+    background-repeat: no-repeat;
+    background-position: center;
+}
+@mixin bg-image($bg-size, $size, $url: x) {
+    @extend %bg-image-base;
+    @include set-size($size);
+    @include set(background-size, $bg-size);
+    @include set(background-image, url('#{$url}'));
+}
+%text-base {
+    white-space: pre-line;
+    word-wrap: break-word;
+    text-decoration: none;
+}
+
+%text-ellipsis {
+    overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+@mixin text($font-size, $font-weight: x, $line-height: x) {
+    @extend %text-base;
+    @include set-font($font-size, $font-weight, $line-height);
+} 
+
+@mixin text-overflow($lines, $width: 100%) {
+    $line: nth($lines, 1);
+    $line-height: 1.15;
+    @if length($lines) == 2 {
+        $line-height: nth($lines, 2);
+    }
+    @if $line == 1 {
+        display: block;
+	    white-space: nowrap;
+    } @else {
+        display: -webkit-box;
+        -webkit-line-clamp: #{$line};
+        -webkit-box-orient: vertical;
+    }
+    @if unit($line-height) == "" {
+        height: $line * $line-height * 1em;
+    } @else {
+        height: $line * $line-height;
+    }
+    @extend %text-base;
+    @extend %text-ellipsis;
+    @include set(width, $width);
+}
+
+@mixin icon($size, $url: x) {
+    @include bg-image(contain, $size, $url);
+    display: inline-block;
+}
