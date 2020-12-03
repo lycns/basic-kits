@@ -26,6 +26,9 @@ export function initWindowHeight(rootId: string, lock = false) {
     if (!rootNode.style.minHeight) {
       // 初始化 min height， 主要目的为兼容 safari 的 innerHeight
       initInnerHeight(rootNode)
+      window.addEventListener('resize', () => {
+        initInnerHeight(rootNode)
+      })
     } else if (BroswerTypes.isWechatWebview) {
       // WORKAROUND 兼容 wechat 内置浏览器路由切换时 innerHeight 不一致的问题, 路由延迟大概 100 ms
       // 即 100ms 后才能取得正确的高度, 未测试 resize 是否能正确触发
@@ -33,9 +36,7 @@ export function initWindowHeight(rootId: string, lock = false) {
         initInnerHeight(rootNode)
       }, 100)
     }
-    window.addEventListener('resize', () => {
-        initInnerHeight(rootNode)
-    })
+    
 }
 
 // 初始化窗口宽度, web 端非响应式兼容时使用，保证窗口自动缩放
