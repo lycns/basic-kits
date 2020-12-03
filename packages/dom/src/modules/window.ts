@@ -1,8 +1,16 @@
 import { DeviceTypes, BroswerTypes } from './alias'
 
-// 确保 mobile 端容器最小高度在各个平台下一致
+// 获取容器实际可用高度
+export function getInnerHeight() {
+     // windows 如果不减去两个像素就会出现滚动条
+     const heightOffset = DeviceTypes.isWindows ? -2 : 0
+     const innerHeight = window.innerHeight
+     return innerHeight ? innerHeight + heightOffset  + 'px' : ''
+}
+
+// 统一容器高度或最小高度
 export function initWindowHeight(rootId: string, lock = false) {
-    if (!DeviceTypes.isMobile && !rootId) {
+    if (!rootId) {
         return
     }
     const rootNode = document.getElementById(rootId)
@@ -10,30 +18,26 @@ export function initWindowHeight(rootId: string, lock = false) {
         return
     }
 
-    const initInnerHeight = (rootNode: HTMLElement) => {
-        // windows 如果不减去两个像素就会出现滚动条
-        const heightOffset = DeviceTypes.isWindows ? -2 : 0
-        const innerHeight = window.innerHeight
-        const height = innerHeight ? innerHeight + heightOffset  + 'px' : '100vh'
+    const initInnerHeight = () => {
+        const height = getInnerHeight()
         if (!lock) {
             rootNode.style.minHeight = height
         } else {
             rootNode.style.height = height
         }
-        
     }
 
     if (!rootNode.style.minHeight) {
       // 初始化 min height， 主要目的为兼容 safari 的 innerHeight
-      initInnerHeight(rootNode)
+      initInnerHeight()
       window.addEventListener('resize', () => {
-        initInnerHeight(rootNode)
+        initInnerHeight()
       })
     } else if (BroswerTypes.isWechatWebview) {
       // WORKAROUND 兼容 wechat 内置浏览器路由切换时 innerHeight 不一致的问题, 路由延迟大概 100 ms
       // 即 100ms 后才能取得正确的高度, 未测试 resize 是否能正确触发
       setTimeout(() => {
-        initInnerHeight(rootNode)
+        initInnerHeight()
       }, 100)
     }
     
