@@ -1,5 +1,4 @@
-import { xEmpty, xObject, xArray, xDate, xBlocking, xSleep, xType } from "../index";
-import { xIsType } from '../modules/base';
+import { xEmpty, xObject, xArray, xDate, xBlocking, xSleep, xType, xParse, xIsType } from "../index";
 
 test('test for xEmpty', () => {
     const empties = [ null, undefined, NaN, '', {}, []]
@@ -81,4 +80,17 @@ test('test for xBlocking', (done) => {
 test('test for xSleep', async (done) => {
     expect(await xSleep(10)).toEqual(undefined)
     done()
+})
+
+test('test for xParse', () => {
+    expect(xParse('')).toEqual('')
+    expect(xParse('', 'number')).toEqual(null)
+    expect(xParse('1', 'number')).toEqual(1)
+    expect(xParse('1', 'string')).toEqual('1')
+    expect(xParse('abc', 'number')).toEqual(null)
+    expect(xParse('123abc', 'number')).toEqual(null)
+    expect(xParse('true', 'boolean')).toEqual(true)
+    expect(xParse('false', 'boolean')).toEqual(false)
+    expect(xParse(['1', 'ab', '12ab', 'true'])).toEqual([1, 'ab', '12ab', true])
+    expect(xParse(['1', 'ab', '12ab', 'true'], 'number')).toEqual([1, null, null, null])
 })
