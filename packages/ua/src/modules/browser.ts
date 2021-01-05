@@ -1,4 +1,4 @@
-import { xArray, xIsType } from '@basic-kits/js'
+import { xArray, isType } from '@basic-kits/js'
 
 export enum BrowserType {
     IE = 'IE',
@@ -53,7 +53,7 @@ const browserVersionMap: IbrowserVersionMap = {
 export function getBrowserType(ua: string): BrowserType {
     for (const browserType of Object.keys(browserTypeMap) as BrowserType[]) {
         const matchType = browserTypeMap[browserType]
-        if (xIsType<Function>(matchType, 'function')) {
+        if (isType.function(matchType)) {
             if (matchType(ua)) {
                 return browserType
             }
@@ -72,7 +72,7 @@ export function getBrowserType(ua: string): BrowserType {
 export function getBrowserVersion(ua: string): string {
     const browserType = getBrowserType(ua)
     const matchVersion = xArray(browserVersionMap[browserType])
-    if (xIsType<Function>(matchVersion, 'function')) {
+    if (isType.function(matchVersion)) {
         return matchVersion(ua)
     }
     for (const regexp of xArray(matchVersion) as RegExp[]) {

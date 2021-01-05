@@ -1,11 +1,17 @@
+import { xDate } from "./type"
 
 type ISampleParser = {
     [key: string]: (value: string) => [boolean, any]
+}
+
+function isDateString(value: string) {
+    return isNaN(Number(value)) && !isNaN(Date.parse(value.replace(/-/g, '/')))
 }
 const sampleParser: ISampleParser = {
     number: (value: string) => [!!value && !isNaN(Number(value)), Number(value)],
     boolean: (value: string) => [['true', 'false'].includes(value), value === 'true' ? true : false],
     string: (value: string) => [true, value],
+    date: (value: string) => [isDateString(value), xDate(value)],
 }
 
 
@@ -29,10 +35,13 @@ export function xParse(value: string | string[], type?: string) {
     return pass ? res : null
 }
 
-function tryParse(arg: string) {
+function tryParse(value: string) {
     try {
-        return JSON.parse(arg)
+        if (isDateString(value)) {
+            return xDate(value)
+        }
+        return JSON.parse(value)
     } catch(e) {
-        return arg
+        return value
     }
 }

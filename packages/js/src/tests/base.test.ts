@@ -1,4 +1,4 @@
-import { xEmpty, xObject, xArray, xDate, xBlocking, xSleep, xType, xParse, xIsType } from "../index";
+import { xEmpty, xObject, xArray, xDate, xBlocking, xSleep, xType, xParse, isType } from "../index";
 
 test('test for xEmpty', () => {
     const empties = [ null, undefined, NaN, '', {}, []]
@@ -34,6 +34,7 @@ test('test for xEmpty extras', () => {
     noempties.forEach(x => {
         expect(xEmpty(x, { extras: [-1, 0] })).toBe(false)
     })
+    expect(xEmpty('', { exclude: [''] })).toBe(false)
 })
 
 test('test for xObject', () => {
@@ -63,7 +64,21 @@ test('test for xType', () => {
     expect(xType([])).toEqual('array')
     expect(xType(() => {})).toEqual('function')
     expect(xType({})).toEqual('object')
-    expect(xIsType({}, 'object')).toEqual(true)
+})
+
+
+test('test for isType', () => {
+    expect(isType.object({})).toEqual(true)
+    expect(isType.string('')).toEqual(true)
+    expect(isType.number(1)).toEqual(true)
+    expect(isType.boolean(false)).toEqual(true)
+    expect(isType.date(new Date())).toEqual(true)
+    expect(isType.symbol(Symbol(1))).toEqual(true)
+    expect(isType.function(() => {})).toEqual(true)
+    expect(isType.array([])).toEqual(true)
+    const p = new Promise(() => {})
+    expect(isType.promise(p)).toEqual(true)
+    expect(isType.any(p, 'promise')).toEqual(true)
 })
 
 test('test for xDate', () => {
@@ -93,4 +108,6 @@ test('test for xParse', () => {
     expect(xParse('false', 'boolean')).toEqual(false)
     expect(xParse(['1', 'ab', '12ab', 'true'])).toEqual([1, 'ab', '12ab', true])
     expect(xParse(['1', 'ab', '12ab', 'true'], 'number')).toEqual([1, null, null, null])
+    expect(xParse('2020-1-1')).toEqual(new Date('2020/1/1'))
+    expect(xParse('123123', 'date')).toEqual(null)
 })
