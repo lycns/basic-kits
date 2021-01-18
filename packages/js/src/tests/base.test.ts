@@ -1,4 +1,4 @@
-import { xEmpty, xObject, xArray, xDate, xBlocking, xSleep, xType, xParse, isType } from "../index";
+import { xEmpty, xObject, xArray, xDate, xBlocking, xSleep, xType, xParse, isType, toChars } from "../index";
 
 test('test for xEmpty', () => {
     const empties = [ null, undefined, NaN, '', {}, []]
@@ -110,4 +110,8 @@ test('test for xParse', () => {
     expect(xParse(['1', 'ab', '12ab', 'true'], 'number')).toEqual([1, null, null, null])
     expect(xParse('2020-1-1')).toEqual(new Date('2020/1/1'))
     expect(xParse('123123', 'date')).toEqual(null)
+})
+
+test('test for xParse', () => {
+    expect(toChars.SBC('「」[]？：・、。・')).toEqual('[]')
 })
