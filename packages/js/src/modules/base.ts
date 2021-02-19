@@ -21,3 +21,6 @@ export function xEmpty(value: any, opts: IEmptyOpts = {} ) {
     }
 }
 
+export function xFormat(value: any, formatter: (x: any) => any) {
+  return xEmpty(value) || formatter(value)
+}
