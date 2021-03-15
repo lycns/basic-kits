@@ -53,7 +53,7 @@ const browserVersionMap: IbrowserVersionMap = {
 export function getBrowserType(ua: string): BrowserType {
     for (const browserType of Object.keys(browserTypeMap) as BrowserType[]) {
         const matchType = browserTypeMap[browserType]
-        if (isType.function(matchType)) {
+        if (isType(matchType, 'function')) {
             if (matchType(ua)) {
                 return browserType
             }
@@ -72,7 +72,7 @@ export function getBrowserType(ua: string): BrowserType {
 export function getBrowserVersion(ua: string): string {
     const browserType = getBrowserType(ua)
     const matchVersion = xArray(browserVersionMap[browserType])
-    if (isType.function(matchVersion)) {
+    if (isType(matchVersion, 'function')) {
         return matchVersion(ua)
     }
     for (const regexp of xArray(matchVersion) as RegExp[]) {

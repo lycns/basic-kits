@@ -1,21 +1,29 @@
 import { IEmptyOpts, xEmpty } from "./base"
 
-// 可以获得更多的 typeOf 类型
-export function xType(value: any): string {
-    return Object.prototype.toString.call(value).slice(8, -1).toLocaleLowerCase()
+type ITypes<T = any> = {
+  string: string,
+  number: number,
+  boolean: boolean,
+  symbol: symbol,
+  date: Date,
+  promise: Promise<T>,
+  array: Array<T>,
+  function: Function,
+  object: object,
 }
 
-export const isType = {
-  object: (value: any): value is object => xType(value) === 'object',
-  number: (value: any): value is number => xType(value) === 'number',
-  string: (value: any): value is string => xType(value) === 'string',
-  boolean: (value: any): value is boolean => xType(value) === 'boolean',
-  symbol: (value: any): value is symbol => xType(value) === 'symbol',
-  date: (value: any): value is Date => xType(value) === 'date',
-  array: <T = any>(value: any): value is T[] => Array.isArray(value),
-  promise: <T = any>(value: any): value is Promise<T> => xType(value) === 'promise' || (typeof value === 'function' && !!value.then),
-  function: <T = any, U extends any[] = any>(value: any): value is ((...any: U) => T) => xType(value) === 'function',
-  any: <T = any>(value: any, type: string): value is T => xType(value) === type,
+export function xType(value: any) {
+  return Object.prototype.toString.call(value).slice(8, -1).toLocaleLowerCase()
+}
+
+type ITypesKeys = keyof ITypes
+
+export function isType<
+  T extends any = undefined,
+  U extends ITypesKeys = ITypesKeys,
+  V = T extends undefined ? ITypes[U] : T,
+>(value: any, ...datatypes: U[]): value is V {
+    return datatypes.includes(xType(value) as U)
 }
 
 // 数组归一化, 转换成一个元素类型一致且没有空元素的数组

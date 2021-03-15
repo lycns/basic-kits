@@ -1,4 +1,6 @@
-import { xEmpty, xObject, xArray, xDate, xBlocking, xSleep, xType, xParse, isType, xFormat } from "../index";
+import { xEmpty, xObject, xArray, xDate, xBlocking, xSleep, xType, xParse, xFormat } from "../index";
+import { xSingleton } from "../modules/base";
+import { isType } from "../modules/type";
 
 test('test for xEmpty', () => {
     const empties = [ null, undefined, NaN, '', {}, []]
@@ -68,17 +70,16 @@ test('test for xType', () => {
 
 
 test('test for isType', () => {
-    expect(isType.object({})).toEqual(true)
-    expect(isType.string('')).toEqual(true)
-    expect(isType.number(1)).toEqual(true)
-    expect(isType.boolean(false)).toEqual(true)
-    expect(isType.date(new Date())).toEqual(true)
-    expect(isType.symbol(Symbol(1))).toEqual(true)
-    expect(isType.function(() => {})).toEqual(true)
-    expect(isType.array([])).toEqual(true)
-    const p = new Promise(() => {})
-    expect(isType.promise(p)).toEqual(true)
-    expect(isType.any(p, 'promise')).toEqual(true)
+    expect(isType({}, 'object')).toEqual(true)
+    expect(isType('', 'string')).toEqual(true)
+    expect(isType(1, 'number')).toEqual(true)
+    expect(isType(false, 'boolean')).toEqual(true)
+    expect(isType(new Date(), 'date')).toEqual(true)
+    expect(isType(Symbol(1), 'symbol')).toEqual(true)
+    expect(isType(() => {}, 'function')).toEqual(true)
+    expect(isType([], 'array')).toEqual(true)
+    expect(isType(Promise.resolve(1), 'promise')).toEqual(true)
+    expect(isType('', 'any' as any)).toEqual(false)
 })
 
 test('test for xDate', () => {
@@ -112,11 +113,18 @@ test('test for xParse', () => {
     expect(xParse('123123', 'date')).toEqual(null)
 })
 
-// test('test for xParse', () => {
-//     expect(toChars.SBC('「」[]？：・、。・')).toEqual('[]')
-// })
-
 test('test for xFormat', () => {
     expect(xFormat(0, x => `${x}`)).toEqual('0')
     expect(xFormat(0, x => x > 0 && `${x}`) || 1).toEqual(1)
+})
+
+test('test for singleton', () => {
+    const x = xSingleton(() => {
+        return { name: 123 }
+    })
+    const x1 = x['xx']
+    const x2 = x['xx']
+    const x3 = x['xxx']
+    expect(x1 === x2).toEqual(true)
+    expect(x2 === x3).toEqual(false)
 })
